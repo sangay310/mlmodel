@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health and Lifestyle Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: orange;
+      }
+      .main_container {
+        background: white;
+        margin-left: 13%;
+        margin-right: 7%;
+        margin-top: 4%;
+        max-width: 1400px;
+        border-radius: 10px;
+      }
+      form {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      button {
+        grid-column: span 3;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 25vh;
+        margin-top: -7px;
+        margin-bottom: -57px;
+        /*Fix for safari gap*/
+        min-height: 300px;
+        max-height: 450px;
+      }
+
+      .content {
+        position: relative;
+        height: 20vh;
+        text-align: center;
+        background-color: white;
+      }
+
+      /* Animation */
+
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+
+      /* /* Shrinking for mobile */
+      @media (max-width: 768px) {
+        .waves {
+          height: 40px;
+          min-height: 40px;
+        }
+
+        .content {
+          height: 30vh;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_container">
+      <h1 style="text-align: left; color: orange; padding: 30px">
+        Obesity Risk Prediction
+      </h1>
+
+      <form action="{{url_for('home')}}" method="post">
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="Gender" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="Age" required />
+        </div>
+
+        <div class="form-group">
+          <label for="height">Height (meter):</label>
+          <input type="number" step="0.01" id="height" name="Height" required />
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" step="0.01" name="Weight" required />
+        </div>
+
+        <div class="form-group">
+          <label for="frequent_intake_caloric_food"
+            >Frequent Intake of Caloric Food:</label
+          >
+          <select
+            id="frequent_intake_caloric_food"
+            name="Frequent_Intake_of_Caloric_Food"
+            required
+          >
+            <option value="" disabled selected>Select...</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="vegetable_in_meal">Vegetable in meal:</label>
+          <select id="vegetable_in_meal" name="Vegetable_in_meal" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="no_of_meals_day">Number of meals per day:</label>
+          <select id="no_of_meals_day" name="No_of_meals/day" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="high_caloric_food">High Caloric Food:</label>
+          <select id="high_caloric_food" name="High_Caloric_Food" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="frequently">Frequently</option>
+            <option value="sometimes">Sometimes</option>
+            <option value="rarely">Rarely</option>
+            <option value="always">Always</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="smoke">Smoke:</label>
+          <select id="smoke" name="Smoke" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="consumption_of_water">Consumption of Water (L):</label>
+          <select
+            id="consumption_of_water"
+            name="Consumption_of_Water"
+            required
+          >
+            <option value="" disabled selected>Select...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="monitaring_of_calories">Monitoring of calories:</label>
+          <select
+            id="monitaring_of_calories"
+            name="Monitaring_of_calories"
+            required
+          >
+            <option value="" disabled selected>Select...</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="physical_activity">Physical Activity (hrs/day):</label>
+          <select id="physical_activity" name="Physical_Activity(hr)" required>
+            <option value="" disabled selected>Select...</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="time_spend_using_tech"
+            >Time spent using technology (hrs/day):</label
+          >
+          <input
+            type="number"
+            id="time_spend_using_tech"
+            name="Time_spend_using_tech(hr)"
+            step="0.01"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="frequency_of_alcohol"
+            >Frequency of Alcohol consumption:</label
+          >
+          <select
+            id="frequency_of_alcohol"
+            name="Frequency_of_Alcohol"
+            required
+          >
+            <option value="" disabled selected>Select...</option>
+            <option value="sometimes">Sometimes</option>
+            <option value="frequently">Frequently</option>
+            <option value="never">no</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mode_of_transportation">Mode of Transportation:</label>
+          <select
+            id="mode_of_transportation"
+            name="Mode_Of_Transportation"
+            required
+          >
+            <option value="" disabled selected>Select...</option>
+            <option value="walking">Walking</option>
+            <option value="bicycle">bike</option>
+            <option value="car">Automobile</option>
+            <option value="public_transport">Public Transportation</option>
+            <option value="motorbike">Motorbike</option>
+          </select>
+        </div>
+
+        <button
+          class="sub"
+          type="submit"
+          style="
+            margin-bottom: 5%;
+            margin-left: 30%;
+            margin-right: 30%;
+            border-radius: 10px;
+          "
+        >
+          Predict
+        </button>
+      </form>
+    </div>
+    <div>
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(255,255,255,0.7"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(255,255,255,0.5)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(255,255,255,0.3)"
+          />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>
